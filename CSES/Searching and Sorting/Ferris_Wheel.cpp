@@ -8,10 +8,20 @@ int main()
     for(int& it : v) cin >> it;
     sort(v.begin(), v.end());
 
-    int low = 0, high = n -1;
-    while(low <= high) {
-        int mid = (low + high) /2;
-
+    int l = 0, r = n -1;
+    int cnt = 0;
+    while(l <= r) {
+        int sum = v[l] + v[r];
+        if(sum <= x) {
+            cnt++;
+            l++, r--;
+        }
+        else {
+            cnt++;
+            r--;
+        }
     }
+
+    cout << cnt << endl;
     return 0;
 }
