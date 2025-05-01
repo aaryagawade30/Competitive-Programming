@@ -15,27 +15,7 @@ using namespace std;
 
 void rain() {
     int n; cin >> n;
-    vi sec_ele;
-    int lowest_fr_mini = LONG_LONG_MAX;
-    for(int i = 0; i < n; i++) {
-        int m; cin >> m;
-        vi a(m);
-        for(int& it : a) cin >> it;
-        sort(all(a));
-
-        sec_ele.push_back(a[1]);
-        lowest_fr_mini = min(lowest_fr_mini, a[0]);
-    }
-
-    sort(all(sec_ele));
-
-    int sum_of_sec_ele = accumulate(all(sec_ele), 0LL);
-    int lowest_sc_mini = sec_ele[0];
-
-    int ans = lowest_fr_mini + sum_of_sec_ele - lowest_sc_mini;
-
-    cout << ans << endl;
-
+    cout << (n * n) / 4 + 1 << endl;
 }
 
 int32_t main()
