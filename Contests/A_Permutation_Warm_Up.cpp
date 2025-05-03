@@ -1,29 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long
-#define lld long long double
-#define vi vector<int>
-#define vvi vector<vector<int>>
-#define pb push_back
-#define vpii vector<pair<int, int>>
-#define all(v) (v).begin(), (v).end()
-#define fr first
-#define sc second
-#define inp(v) for(auto& x : v) cin >> x
-#define rep(i, a, b) for(int i = a; i < b; i++)
+int main() {
+	// your code goes here
+	
+	int t;
+	
+	cin>>t;
+	
+	while(t-- >0){
+	    
+	    int  n,sum=0;
+	    cin>>n;
+	    
+	    int a=n+1;
+	    
+	    for(int i=n;i>0;i--){
+	        
+	        sum+=(abs((2*i)-a));
+	    }
+	    
+	    int k=sum/2;
+	    
+	    cout<<(k+1)<<"\n";
+	}
 
-void rain() {
-    int n; cin >> n;
-    cout << (n * n) / 4 + 1 << endl;
-}
-
-int32_t main()
-{
-    int T; cin >> T;
-    while(T--) {
-        rain();
-    }
-
-    return 0;
 }

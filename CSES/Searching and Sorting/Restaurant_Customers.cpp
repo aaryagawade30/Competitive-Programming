@@ -1,52 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(vector<vector<int> >& customers, int N)
+int main()
 {
-    // Store the arrival and departure time in two different
-    // arrays
-    vector<int> arr(N), dep(N);
-    for (int i = 0; i < N; i++) {
-        arr[i] = customers[i][0];
-        dep[i] = customers[i][1];
+    int n; cin >> n;
+    vector<pair<int, int>> cust(n);
+    for(int i = 0; i < n; i++) {
+        cin >> cust[i].first >> cust[i].second;
     }
+    vector<int> arr(n), dep(n);
 
-    // Sort the arrival and departure time in ascending
-    // order
+    for(int i = 0; i < n; i++) {
+        arr[i] = cust[i].first;
+        dep[i] = cust[i].second;
+    }
     sort(arr.begin(), arr.end());
     sort(dep.begin(), dep.end());
 
     int i = 0, j = 0;
-    // Variables to store the number of customers in the
-    // shop and the maximum customers so far
-    int currentCustomers = 0, maxCustomers = 0;
-    while (i < N && j < N) {
-        // If the arrival time is less than the departure
-        // time
-        if (arr[i] < dep[j]) {
-            currentCustomers++;
-            maxCustomers
-                = max(maxCustomers, currentCustomers);
+
+    int cnt = 0, maxi = 0;
+    while(i < n && j < n) {
+        if(arr[i] < dep[j]) {
+            cnt++;
+            maxi = max(maxi, cnt);
             i++;
         }
-        // If the arrival time is greater than the departure
-        // time
         else {
             j++;
-            currentCustomers--;
+            cnt--;
         }
-    }
-    return maxCustomers;
-}
 
-int main()
-{
-    // Sample Input
-    int N; cin >> N;
-    vector<vector<int>> customers(N, vector<int>(2));
-    for(int i = 0; i < N; i++) {
-        cin >> customers[i][0] >> customers[i][1];
     }
 
-    cout << solve(customers, N) << endl;
+    cout << cnt;
+
+    return 0;
 }
