@@ -14,8 +14,30 @@ using namespace std;
 #define rep(i, a, b) for(int i = a; i < b; i++)
 
 void rain() {
-    int p; cin >> p;
-    cout << 2 << " " << p - 1 << endl;
+    int n, m; cin >> n;
+    vi a(n), b(n);
+    inp(a);
+    inp(b);
+
+    unordered_map<int, int> mp;
+    
+    for (int num : a) {
+        mp[num]++;
+    }
+    for (int num : b) {
+        mp[num]++;
+    }
+
+    int maxFreq = 0;
+    int highestFreqElement = -1;
+    for (auto& pair : mp) {
+        if (pair.second > maxFreq) {
+            maxFreq = pair.second;
+            highestFreqElement = pair.first;
+        }
+    }
+    cout << maxFreq << endl;
+    
 }
 
 int32_t main()

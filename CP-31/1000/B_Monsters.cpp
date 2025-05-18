@@ -7,6 +7,7 @@ using namespace std;
 #define vvi vector<vector<int>>
 #define pb push_back
 #define vpii vector<pair<int, int>>
+#define pii pair<int, int>
 #define all(v) (v).begin(), (v).end()
 #define fr first
 #define sc second
@@ -14,8 +15,32 @@ using namespace std;
 #define rep(i, a, b) for(int i = a; i < b; i++)
 
 void rain() {
-    int p; cin >> p;
-    cout << 2 << " " << p - 1 << endl;
+    int n, k;
+    cin >> n >> k;
+    vpii v(n);
+    for(int i = 0; i < n; i++) {
+        cin >> v[i].fr;
+        v[i].sc = i + 1;
+    }
+
+    int i;
+    rep(i, 0, n) {
+        v[i].fr = v[i].fr % k;
+        if(v[i].fr == 0) v[i].fr = k;
+    }
+
+    sort(all(v), [&](pii a, pii b) {
+        if(a.fr != b.fr) {
+            return a.fr > b.fr;
+        }
+        return a.sc < b.sc;
+    });
+
+    for(auto& it : v) {
+        cout << it.sc << " ";
+    }
+    cout << endl;
+
 }
 
 int32_t main()
