@@ -14,29 +14,41 @@ using namespace std;
 #define rep(i, a, b) for(int i = a; i < b; i++)
 
 void rain() {
-    int n, m; cin >> n;
+    int n; cin >> n;
     vi a(n), b(n);
     inp(a);
     inp(b);
 
-    unordered_map<int, int> mp;
-    
-    for (int num : a) {
-        mp[num]++;
-    }
-    for (int num : b) {
-        mp[num]++;
-    }
+    vi longest_subarr_a(2 * n +1, 0);
+    vi longest_subarr_b(2 * n +1, 0);
 
-    int maxFreq = 0;
-    int highestFreqElement = -1;
-    for (auto& pair : mp) {
-        if (pair.second > maxFreq) {
-            maxFreq = pair.second;
-            highestFreqElement = pair.first;
+    int cntr = 1;
+    for(int i = 1; i < n; i++) {
+        if(a[i] == a[i -1]) cntr++;
+        else {
+            longest_subarr_a[a[i -1]] = max(longest_subarr_a[a[i -1]], cntr);
+            cntr = 1;
         }
     }
-    cout << maxFreq << endl;
+    longest_subarr_a[a[n -1]] = max(longest_subarr_a[a[n -1]], cntr);
+    
+    cntr = 1;
+
+    for(int i = 1; i < n; i++) {
+        if(b[i] == b[i -1]) cntr++;
+        else {
+            longest_subarr_b[b[i -1]] = max(longest_subarr_b[b[i -1]], cntr);
+            cntr = 1;
+        }
+    }
+    longest_subarr_b[b[n -1]] = max(longest_subarr_b[b[n -1]], cntr);
+
+    int max_freq = -1;
+    for(int i = 1; i < 2 * n +1; i++) {
+        max_freq =  max(max_freq, longest_subarr_a[i] + longest_subarr_b[i]);
+    }
+
+    cout << max_freq << endl;
     
 }
 
